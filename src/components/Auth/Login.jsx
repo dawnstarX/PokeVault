@@ -62,10 +62,15 @@ const Login = () => {
       <div>
         <h1>Don't have an account</h1>
         <button>create new account</button>
+        <br />
         <button onClick={googleLogin}>Log In with google</button>
+        <br />
         <button onClick={facebookLogin}>Log In with facebook</button>
+        <br />
         <button onClick={YahooLogin}>Log In with yahoo</button>
+        <br />
         <button onClick={TwitterLogin}>Log In with twitter</button>
+        <br />
       </div>
     </>
   );
