@@ -22,6 +22,15 @@ const Login = () => {
   //loggin in with twitter
   const TwitterProvider = new TwitterAuthProvider();
 
+  const Login = async (Provider) => {
+    try {
+      const result = await signInWithPopup(auth, Provider);
+      console.log(result);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   const googleLogin = async () => {
     try {
       const result = await signInWithPopup(auth, GoogleProvider);
@@ -89,13 +98,37 @@ const Login = () => {
         <h1>Don't have an account</h1>
         <button>create new account</button>
         <br />
-        <button onClick={googleLogin}>Log In with google</button>
+        <button
+          onClick={() => {
+            Login(GoogleProvider);
+          }}
+        >
+          Log In with google
+        </button>
         <br />
-        <button onClick={facebookLogin}>Log In with facebook</button>
+        <button
+          onClick={() => {
+            Login(FacebookProvider);
+          }}
+        >
+          Log In with facebook
+        </button>
         <br />
-        <button onClick={YahooLogin}>Log In with yahoo</button>
+        <button
+          onClick={() => {
+            Login(YahooProvider);
+          }}
+        >
+          Log In with yahoo
+        </button>
         <br />
-        <button onClick={TwitterLogin}>Log In with twitter</button>
+        <button
+          onClick={() => {
+            Login(TwitterProvider);
+          }}
+        >
+          Log In with twitter
+        </button>
         <br />
       </div>
     </>
