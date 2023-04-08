@@ -1,14 +1,18 @@
-import React from "react";
+import { React, useState } from "react";
 import {
   GoogleAuthProvider,
   signInWithPopup,
   FacebookAuthProvider,
   OAuthProvider,
   TwitterAuthProvider,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../../utils/firebase";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   //logging  in with google
   const GoogleProvider = new GoogleAuthProvider();
   //logging in with facebook
@@ -54,10 +58,32 @@ const Login = () => {
     }
   };
 
+  const EmailLogin = async () => {
+    try {
+      const result = await signInWithEmailAndPassword(auth, email, password);
+      console.log(result);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <>
       <div>
         <h1> LOGIN</h1>
+      </div>
+      <div>
+        <input
+          placeholder="Email..."
+          type="email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          placeholder="Password..."
+          type="password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button onClick={EmailLogin}>Log In</button>
       </div>
       <div>
         <h1>Don't have an account</h1>
