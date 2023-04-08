@@ -1,10 +1,15 @@
 import { useState, React } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../utils/firebase";
+import ProviderLogin from "./ProviderLogin";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
+
   const signinWithEmail = async () => {
     try {
       const result = await createUserWithEmailAndPassword(
@@ -13,6 +18,7 @@ const Signup = () => {
         password
       );
       console.log(result);
+      navigate("/");
     } catch (err) {
       console.error(err);
     }
@@ -31,6 +37,7 @@ const Signup = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button onClick={signinWithEmail}>Sign Up</button>
+        <ProviderLogin method={"Sign up"} />
       </div>
     </>
   );
