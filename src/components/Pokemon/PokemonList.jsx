@@ -1,33 +1,25 @@
 import { React, useEffect, useState } from "react";
-import axios from "axios";
+import { fetchPokemonList, fetchSearchedPokemon } from "../../utils/PokemonAPI";
 
 const PokemonList = () => {
   const [pokemonList, setPokemonList] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
   useEffect(() => {
-    const fetchPokemon = async () => {
-      const response = await axios.get(
-        "https://pokeapi.co/api/v2/pokemon?limit=21"
-      );
-      const data = response.data.results;
-      const pokemonDetails = await Promise.all(
-        data.map(async (pokemon) => {
-          const pokemonResponse = await axios.get(pokemon.url);
-          return pokemonResponse.data;
-        })
-      );
-      setPokemonList(pokemonDetails);
+    const fetching = async () => {
+      const pokemons = await fetchSearchedPokemon(searchQuery);
+      console.log(pokemons);
+      setPokemonList(pokemons);
     };
-    fetchPokemon();
-  }, []);
+    fetching();
+  }, [searchQuery]);
+
+  const handleSearch = (event) => {
+    setSearchQuery(event.target.value);
+  };
 
   return (
     <div>
-      {pokemonList.map((pokemon) => (
-        <div key={pokemon.name}>
-          <p>{pokemon.name}</p>
-          <img src={pokemon.sprites.front_default} alt={pokemon.name} />
-        </div>
-      ))}
+      <input type="text" placeholder="Search Pokemon" onChange={handleSearch} />
     </div>
   );
 };
