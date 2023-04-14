@@ -1,8 +1,9 @@
 import axios from "axios";
-export const fetchPokemonList = async () => {
+export const fetchPokemonList = async (page) => {
+  let offset = page * 21;
   try {
     const response = await axios.get(
-      "https://pokeapi.co/api/v2/pokemon?limit=21"
+      `https://pokeapi.co/api/v2/pokemon?limit=21&offset=${offset}`
     );
     const data = response.data.results;
     const pokemonDetails = await Promise.all(
