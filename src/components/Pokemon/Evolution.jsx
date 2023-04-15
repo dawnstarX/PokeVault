@@ -1,7 +1,11 @@
 import React from "react";
 
 const Evolution = () => {
-  return <div>Evolution</div>;
+  return (
+    <div>
+      <p>evolution data</p>
+    </div>
+  );
 };
 
 export default Evolution;
