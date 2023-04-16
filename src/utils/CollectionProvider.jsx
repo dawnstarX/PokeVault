@@ -12,7 +12,8 @@ const CollectionProvider = ({ children }) => {
     if (user) {
       const fetchUserData = async () => {
         const result = await fetchOrCreateUserData(user.uid);
-        setCollectedPokemon(result);
+
+        setCollectedPokemon(result.caught);
       };
       fetchUserData();
     }
@@ -20,6 +21,7 @@ const CollectionProvider = ({ children }) => {
 
   return (
     <Collections.Provider value={{ collectedPokemon }}>
+      {console.log(collectedPokemon)}
       {children}
     </Collections.Provider>
   );

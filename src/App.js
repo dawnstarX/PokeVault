@@ -10,8 +10,8 @@ import CollectionProvider from "./utils/CollectionProvider";
 
 function App() {
   return (
-    <UserProvider>
-      <CollectionProvider>
+    <CollectionProvider>
+      <UserProvider>
         <BrowserRouter>
           <Routes>
             <Route exact path="/" element={<Home />} />
@@ -22,8 +22,8 @@ function App() {
             <Route exact path="/:id" element={<PokemonDetails />} />
           </Routes>
         </BrowserRouter>
-      </CollectionProvider>
-    </UserProvider>
+      </UserProvider>
+    </CollectionProvider>
   );
 }
 

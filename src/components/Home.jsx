@@ -4,6 +4,8 @@ import Navbar from "./Header/Navbar";
 import { Collections } from "../utils/CollectionProvider";
 
 const Home = () => {
+  const { collectedPokemon } = useContext(Collections);
+  console.log(collectedPokemon);
   return (
     <>
       <Navbar />

@@ -8,7 +8,6 @@ export const fetchOrCreateUserData = async (id) => {
 
     if (docSnap.exists()) {
       // Document already exists, fetch data
-      console.log(docSnap.data());
       return docSnap.data();
     } else {
       // Document doesn't exist, create new document with default data
