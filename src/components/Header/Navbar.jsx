@@ -1,10 +1,10 @@
 import React from "react";
 import Batch from "./Batch";
 
-const Navbar = ({ user }) => {
+const Navbar = () => {
   return (
     <div>
-      <Batch user={user} />
+      <Batch />
     </div>
   );
 };

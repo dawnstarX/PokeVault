@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { auth } from "../../utils/firebase";
 import { signOut } from "firebase/auth";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../utils/UserProvider";
 
-const Batch = ({ user }) => {
+const Batch = () => {
+  const user = useContext(UserContext);
   const logOut = async () => {
     try {
       await signOut(auth);
