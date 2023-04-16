@@ -1,7 +1,12 @@
 import React from "react";
+import Batch from "./Batch";
 
-const Navbar = () => {
-  return <div>Navbar</div>;
+const Navbar = ({ user }) => {
+  return (
+    <div>
+      <Batch user={user} />
+    </div>
+  );
 };
 
 export default Navbar;

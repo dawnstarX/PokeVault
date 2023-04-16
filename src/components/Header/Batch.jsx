@@ -2,11 +2,8 @@ import React from "react";
 import { auth } from "../../utils/firebase";
 import { signOut } from "firebase/auth";
 import { Link } from "react-router-dom";
-import { useAuthState } from "react-firebase-hooks/auth";
-import PokemonList from "../Pokemon/PokemonList";
 
-const Home = () => {
-  const [user, loading] = useAuthState(auth);
+const Batch = ({ user }) => {
   const logOut = async () => {
     try {
       await signOut(auth);
@@ -28,10 +25,9 @@ const Home = () => {
             <button onClick={logOut}>Log out</button>
           </>
         )}
-        <PokemonList />
       </ul>
     </>
   );
 };
 
-export default Home;
+export default Batch;
