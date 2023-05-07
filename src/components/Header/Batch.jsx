@@ -20,9 +20,9 @@ const Batch = () => {
         {!user && <Link to={"/auth/login"}>join now</Link>}
         {user && (
           <>
-            <Link to={"/dashbord"}>
+            <Link to={"/user/dashboard"}>
               {console.log(user)}
-              <img src={user.photoURL} alt={"user"} />{" "}
+              <img src={user.photoURL} alt={"user"} />
             </Link>
             <button onClick={logOut}>Log out</button>
           </>

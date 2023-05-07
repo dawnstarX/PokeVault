@@ -6,12 +6,17 @@ import { Collections } from "../../utils/CollectionProvider";
 
 const SinglePokemon = ({ pokemon }) => {
   const user = useContext(UserContext);
-  const { collectedPokemon } = useContext(Collections);
-  console.log(collectedPokemon);
-  const Uid = user.uid;
+  const { collectedPokemon, setCollectedPokemon } = useContext(Collections);
+  const Uid = user ? user.uid : null;
   const Pid = pokemon.id;
   const addPokemon = async () => {
-    await updateUserData(Uid, Pid);
+    try {
+      await updateUserData(Uid, Pid);
+      const newCollectedPokemon = [...collectedPokemon, Pid];
+      setCollectedPokemon(newCollectedPokemon);
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <>
@@ -21,7 +26,11 @@ const SinglePokemon = ({ pokemon }) => {
           <img src={pokemon.image} alt="Pokemon" />
         </div>
       </Link>
-      {user && <button onClick={addPokemon}>Add to collection</button>}
+      {user && (
+        <button disabled={collectedPokemon.includes(Pid)} onClick={addPokemon}>
+          Add to collection
+        </button>
+      )}
     </>
   );
 };
