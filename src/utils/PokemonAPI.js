@@ -11,7 +11,8 @@ export const fetchPokemonList = async (page) => {
         const pokemonResponse = await axios.get(pokemon.url);
         const pokemonId = pokemonResponse.data.id;
         const pokemonImage = pokemonResponse.data.sprites.front_default;
-        return { id: pokemonId, image: pokemonImage };
+        const pokemonName = pokemonResponse.data.name;
+        return { id: pokemonId, image: pokemonImage, name: pokemonName };
       })
     );
     return pokemonDetails;

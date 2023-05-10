@@ -17,7 +17,7 @@ const Home = () => {
       };
       fetchUserData();
     }
-  }, [user]);
+  }, [user, setCollectedPokemon]);
   return (
     <>
       <Navbar />

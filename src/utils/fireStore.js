@@ -1,5 +1,12 @@
 import { db } from "./firebase";
-import { doc, getDoc, setDoc, updateDoc, arrayUnion } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+  arrayUnion,
+  arrayRemove,
+} from "firebase/firestore";
 
 export const fetchOrCreateUserData = async (id) => {
   try {
@@ -25,11 +32,22 @@ export const fetchOrCreateUserData = async (id) => {
   }
 };
 
-export const updateUserData = async (id, newData) => {
+export const addCollectedPokemon = async (id, newData) => {
   try {
     const docRef = doc(db, "users", id);
     await updateDoc(docRef, {
       caught: arrayUnion(newData),
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const removeCollectedPokemon = async (id, newData) => {
+  try {
+    const docRef = doc(db, "users", id);
+    await updateDoc(docRef, {
+      caught: arrayRemove(newData),
     });
   } catch (err) {
     console.error(err);
