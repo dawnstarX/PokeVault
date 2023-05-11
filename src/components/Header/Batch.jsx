@@ -12,8 +12,10 @@ const Batch = () => {
         {user && (
           <>
             <Link to={"/user/dashboard"}>
-              {console.log(user)}
               <img src={user.photoURL} alt={"user"} />
+            </Link>
+            <Link to={"/user/chat"}>
+              <p>PokeChat</p>
             </Link>
           </>
         )}

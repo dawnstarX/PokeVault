@@ -7,6 +7,7 @@ import Signup from "./components/Auth/Signup";
 import Home from "./components/Home";
 import PokemonDetails from "./components/Pokemon/PokemonDetails";
 import Dashboard from "./components/User/Dashboard";
+import Chat from "./components/Chat/Chat";
 import UserProvider from "./utils/UserProvider";
 import CollectionProvider from "./utils/CollectionProvider";
 
@@ -23,6 +24,7 @@ function App() {
             </Route>
             <Route element={<PrivateRoutes />}>
               <Route exact path="/user/dashboard" element={<Dashboard />} />
+              <Route exact path="/user/chat" element={<Chat />} />
             </Route>
             <Route exact path="/:id" element={<PokemonDetails />} />
           </Routes>
