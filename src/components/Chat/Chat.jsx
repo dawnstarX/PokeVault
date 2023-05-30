@@ -10,7 +10,7 @@ const Chat = () => {
   const messageRef = useRef("");
 
   const handleSendMessage = (event) => {
-    event.preventdefault();
+    event.preventDefault();
     const message = messageRef.current.value;
     console.log(message);
     sendMessage(username, imageUrl, message);
@@ -20,7 +20,6 @@ const Chat = () => {
     <form>
       <input type="text" ref={messageRef} />
       <button
-        type="submit"
         onClick={(event) => {
           handleSendMessage(event);
         }}
