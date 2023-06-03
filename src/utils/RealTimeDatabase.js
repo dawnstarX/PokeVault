@@ -1,5 +1,5 @@
 import { chatDb } from "./firebase";
-import { ref, set } from "firebase/database";
+import { ref, set, get, child, onValue } from "firebase/database";
 
 export const sendMessage = (username, imageUrl, message) => {
   const timestamp = Date.now();
@@ -8,5 +8,14 @@ export const sendMessage = (username, imageUrl, message) => {
     username,
     imageUrl,
     message,
+  });
+};
+
+export const retrieveMessage = (setMessages) => {
+  const messageRef = ref(chatDb, "messages/");
+  let messages;
+  onValue(messageRef, (snapShot) => {
+    messages = snapShot.val();
+    setMessages(messages);
   });
 };
